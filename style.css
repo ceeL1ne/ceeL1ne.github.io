@@ -12,16 +12,19 @@
    Color Palette
 ========================= */
 
-:root {
+:root{
 
-    --bg: #F8F4EC;
-    --card: #FFFDF8;
+    --bg:#F6F0E5;
+    --card:#FFFDF8;
 
-    --primary: #C98C6B;
-    --secondary: #A9BE9D;
+    --primary:#D08B6A;
+    --secondary:#A8C19A;
 
-    --text: #4A433C;
-    --border: #D7CCBF;
+    --accent:#E7C66D;
+
+    --text:#463F39;
+
+    --border:#D8C8B8;
 
 }
 
@@ -34,6 +37,12 @@ html {
 }
 
 body {
+
+    background:
+    radial-gradient(circle at 20% 20%,rgba(255,255,255,.35),transparent 25%),
+    radial-gradient(circle at 80% 80%,rgba(255,255,255,.25),transparent 30%),
+    var(--bg);
+
     h2,
     h3{
 
@@ -43,7 +52,27 @@ body {
 
     .card{
 
-        text-align:center;
+        background:var(--card);
+
+        border:3px solid var(--border);
+
+        border-radius:26px;
+
+        padding:32px;
+
+        box-shadow:
+        8px 8px 0 rgba(74,67,60,.10);
+
+        transition:.25s;
+
+    }
+
+    .card:hover{
+
+        transform:translateY(-6px) rotate(-.3deg);
+
+        box-shadow:
+        10px 10px 0 rgba(74,67,60,.12);
 
     }
 
@@ -178,10 +207,56 @@ nav a:hover{
 section{
 
     width:min(1100px,90%);
-
     margin:auto;
+    padding:100px 0;
 
-    padding:90px 0;
+    position:relative;
+    overflow:visible;
+
+}
+
+section h2{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:18px;
+
+}
+
+section h2::before,
+section h2::after{
+
+    content:"";
+
+    height:3px;
+
+    width:80px;
+
+    background:var(--primary);
+
+    border-radius:20px;
+
+}
+
+section:nth-child(even)::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:30px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:90%;
+
+    border-top:2px dashed var(--border);
 
 }
 
@@ -247,11 +322,17 @@ section{
 
     box-shadow:4px 4px 0 rgba(0,0,0,.08);
 
+    border:3px solid var(--text);
+
+    box-shadow:5px 5px 0 var(--text);
+
 }
 
 .button:hover{
 
-    transform:translateY(-4px);
+    transform:translate(-2px,-2px);
+
+    box-shadow:7px 7px 0 var(--text);
 
 }
 
@@ -311,6 +392,7 @@ section{
 
     display: flex;
     justify-content: center;
+    position:relative;
 
 }
 
@@ -327,6 +409,10 @@ section{
 
     box-shadow: 10px 10px 0 rgba(0,0,0,.06);
 
+    border:10px solid white;
+
+    outline:5px solid var(--border);
+
 }
 
 .hero-right {
@@ -338,10 +424,26 @@ section{
 
 }
 
-.greeting{
-    font-size: 1rem;
-    color: var(--primary);
-    margin-bottom: 6px;
+.hero-left::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:220px;
+
+    height:220px;
+
+    background:var(--secondary);
+
+    border-radius:45%;
+
+    z-index:-1;
+
+    left:10%;
+
+    top:10%;
+
 }
 
 .hero-right h1 {
@@ -557,6 +659,10 @@ Projects
 
     margin-bottom:18px;
 
+    position:relative;
+
+    overflow:hidden;
+
 }
 
 .tech-stack{
@@ -634,6 +740,18 @@ Skills
     padding:8px 14px;
 
     font-weight:bold;
+
+}
+
+.skill-tags span,
+.tech-stack span,
+.about-tags span{
+
+    background:#FFF6DF;
+
+    border:2px solid var(--border);
+
+    transition:.2s;
 
 }
 
@@ -766,12 +884,112 @@ Contact
 
 footer{
 
-    padding:40px;
+    margin-top:80px;
 
-    text-align:center;
+    padding:60px;
+
+    border-top:3px dashed var(--border);
+
+    color:#8C7C70;
+
+    font-size:.95rem;
 
 }
 
+/* =========================
+   Scrapbook Doodles
+========================= */
+
+.doodle-pattern{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:0;
+}
+
+section > *:not(.doodle-pattern){
+    position:relative;
+    z-index:1;
+}
+
+.doodle-pattern svg{
+    position:absolute;
+    width:50px;
+    height:50px;
+    color:var(--primary);
+    opacity:.10;
+    stroke-width:2;
+    animation:float 7s ease-in-out infinite;
+}
+
+/* Positions */
+
+.d1{ top:6%; left:4%; }
+.d2{ top:12%; right:6%; }
+.d3{ top:40%; left:8%; }
+.d4{ top:22%; right:24%; }
+.d5{ bottom:18%; right:4%; }
+.d6{ bottom:8%; left:10%; }
+.d7{ top:62%; left:72%; }
+.d8{ bottom:30%; left:42%; }
+
+/* Slight variation */
+
+.d2,
+.d5,
+.d8{
+    animation-duration:9s;
+}
+
+.d3,
+.d6{
+    animation-duration:6s;
+}
+
+.d1{
+    transform:rotate(-18deg);
+}
+
+.d2{
+    transform:rotate(15deg);
+}
+
+.d3{
+    transform:rotate(-30deg);
+}
+
+.d4{
+    transform:rotate(20deg);
+}
+
+.d5{
+    transform:rotate(-12deg);
+}
+
+.d6{
+    transform:rotate(28deg);
+}
+
+.d7{
+    transform:rotate(-22deg);
+}
+
+.d8{
+    transform:rotate(10deg);
+}
+
+@keyframes float{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-8px);
+    }
+
+}
 /* =========================
    Mobile
 ========================= */
@@ -780,9 +998,15 @@ footer{
 
     nav{
 
-        flex-direction:column;
+        width:min(1200px,94%);
 
-        gap:15px;
+        margin:20px auto;
+
+        border-radius:999px;
+
+        border:3px solid var(--border);
+
+        box-shadow:6px 6px 0 rgba(0,0,0,.06);
 
     }
 
